@@ -28,6 +28,33 @@ export default function Appointment (props) {
     props.interview ? SHOW : EMPTY
   );
 
+  const save = (name, interviewer) => {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    transition(SAVING)
+    Promise.resolve(props.bookInterview(props.id, interview))
+      .then(() => transition(SHOW))
+      .catch(err => {
+        transition(ERROR_SAVE, true)
+        console.log(err)
+      });
+  }
+
+  const deleteConfirm = () => {
+    transition(CONFIRM)
+  };
+
+  const deleteAppointment = () => {
+    transition(DELETING);
+    Promise.resolve(props.cancelInterview(props.id))
+      .then(() => transition(EMPTY))
+      .catch(err => console.log(err));
+  };
+
+
+
   return (
     <article className="appointment">
      {/* {props.time} */}
@@ -36,10 +63,14 @@ export default function Appointment (props) {
       {mode === EMPTY && <Empty onAdd={onAdd} />}
       {mode === SHOW && (
         <Show
-          student={interview.student}
-          interviewer={interview.interviewer}
-        />
+          id={props.id}
+          student={props.interview.student}
+          interviewer={props.interview.interviewer}
+          onDelete={deleteAppointment}
+          onEdit={deleteConfirm}
+          />
       )}
+      
       { mode === CREATE && (
         <Form
         interviewers={[]}
@@ -47,6 +78,27 @@ export default function Appointment (props) {
         onCancel={onCancel}
         />
       )}
+      {mode === SAVING && (
+        <Status 
+          message="Saving"
+        />
+      )}
+
+      {mode === CONFIRM && (
+        <Confirm 
+          message="Are you sure you want to delete?"
+          onConfirm={deleteAppointment}
+          onCancel = {() => back()}
+        />
+      )}
+
+
+      {mode === DELETING && (
+        <Status 
+          message="Deleting"
+        />
+      )}
+
     </article>
   )
 } 
