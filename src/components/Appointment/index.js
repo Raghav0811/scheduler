@@ -34,12 +34,15 @@ export default function Appointment (props) {
       interviewer
     };
     transition(SAVING)
+
     Promise.resolve(props.bookInterview(props.id, interview))
       .then(() => transition(SHOW))
-      .catch(err => {
-        transition(ERROR_SAVE, true)
         console.log(err)
-      });
+        .catch(err => {
+          transition(ERROR_SAVE, true)
+          console.log(err)
+        });
+      };
   }
 
   const deleteConfirm = () => {
@@ -50,7 +53,10 @@ export default function Appointment (props) {
     transition(DELETING);
     Promise.resolve(props.cancelInterview(props.id))
       .then(() => transition(EMPTY))
-      .catch(err => console.log(err));
+      .catch(err => {
+        transition(ERROR_SAVE, true)
+        console.log(err)
+      });
   };
 
 
@@ -66,7 +72,7 @@ export default function Appointment (props) {
           id={props.id}
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          onDelete={deleteAppointment}
+          onDelete={() => transition(CONFIRM)}
           onEdit={deleteConfirm}
           />
       )}
@@ -106,6 +112,19 @@ export default function Appointment (props) {
           interviewers={props.interviewers}
           onCancel = {() => back()}
           onSave = {save}
+        />
+      )}
+
+      {mode === ERROR_SAVE && (
+        <Error 
+          message="Unable to save"
+          onClose={() => back()}
+        />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error 
+          message="Unable to delete"
+          onClose={() => back()}
         />
       )}
 
