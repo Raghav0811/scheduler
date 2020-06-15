@@ -9,6 +9,8 @@ import Status from './Status';
 import Confirm from 'components/Appointment/Confirm';
 import Error from 'components/Appointment/Error';
 
+
+
 const EMPTY = 'EMPTY';
 const SHOW = 'SHOW';
 const CREATE = 'CREATE';
@@ -21,7 +23,20 @@ const ERROR_DELETE = 'ERROR_DELETE';
 
 
 export default function Appointment (props) {
+
+  const { mode, transition, back } = useVisualMode(
+    props.interview ? SHOW : EMPTY
+  );
+
   return (
     <article className="appointment"></article>
+    <Header time= {props.time} />
+    {}
+      {mode === SHOW && (
+  <Show
+    student={props.interview.student}
+    interviewer={props.interview.interviewer}
+  />
+)}
   )
 }
