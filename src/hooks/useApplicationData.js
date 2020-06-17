@@ -4,14 +4,13 @@ import axios from "axios";
 
 export default function useApplicationData(initial) {
 
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {},
     interviewers: {}
-  });
-
-  const setDay = day => dispatch({ type: SET_DAY, day});
+  })
+  const setDay = day => setState({...state, day})
 
   
   const bookInterview = (id, interview) => {

@@ -29,18 +29,24 @@ const ERROR_DELETE = 'ERROR_DELETE';
   );
 
   const save = (name, interviewer) => {
+    console.log('SAVING')
     const interview = {
       student: name,
       interviewer
     };
     transition(SAVING)
 
-    Promise.resolve(props.bookInterview(props.id, interview))
-      .then(() => transition(SHOW))
-        .catch(err => {
-          transition(ERROR_SAVE, true)
-          console.log(err)
-        });
+    // Promise.resolve(props.bookInterview(props.id, interview))
+    //   .then(() => transition(SHOW))
+    //     .catch(err => {
+    //       transition(ERROR_SAVE, true)
+    //       console.log(err)
+    //     });
+
+    props
+    .bookInterview(props.id, interview)
+    .then(() => transition(SHOW))
+    .catch((error) => transition(ERROR_SAVE, true));
       };
       
       const deleteConfirm = () => {
@@ -68,15 +74,15 @@ const ERROR_DELETE = 'ERROR_DELETE';
         id={props.id}
         student={props.interview.student}
         interviewer={props.interview.interviewer}
-        onDelete={() => transition(CONFIRM)}
-        onEdit={deleteConfirm}
+        onDelete={deleteConfirm}
+        onEdit={() => transition(EDIT)}
         />
         )}
       
       { mode === CREATE && (
         <Form
-        interviewers={[]}
-        onSave={props.onSave}
+        interviewers={props.interviewers}
+        onSave={save}
         onCancel={back}
         />
         )}
