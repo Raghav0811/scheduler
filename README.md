@@ -18,15 +18,15 @@ Test: Jest, Cypress
 
 ## Dependencies
 
--Node 10.x and above
--NPM 5.x and above
--Axios
--classnames
--express
--normalize.css
--react
--react-dom
--react-scripts
+- Node 10.x and above
+- NPM 5.x and above
+- Axios
+- classnames
+- express
+- normalize.css
+- react
+- react-dom
+- react-scripts
 
 ## Get Started
 
