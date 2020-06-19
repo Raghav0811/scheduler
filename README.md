@@ -1,23 +1,29 @@
 # Interview Scheduler
 
-## Setup
+This is a single-page app built on React.js that allows users to book, edit or cancel interviews for each day of the week (Monday to Friday).
 
-Install dependencies with `npm install`.
+Scheduler uses:
+Front-End: React, Storybook
 
-## Running Webpack Development Server
+BackEnd- PostGres, Node, Express
 
-```sh
-npm start
-```
+Test: Jest, Cypress
 
-## Running Jest Test Framework
+## Dependencies
 
-```sh
-npm test
-```
+-Node 10.x and above
+-NPM 5.x and above
+-Axios
+-classnames
+-express
+-normalize.css
+-react
+-react-dom
+-react-scripts
 
-## Running Storybook Visual Testbed
+## Get Started
 
-```sh
-npm run storybook
-```
+- Fork and clone respository
+- Install dev dependencies using 'npm install'
+- Start web server using 'npm run dev'. App boots up in <http://localhost:8000/>.
+- Go to <http://localhost:8000/> on your browser
