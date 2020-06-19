@@ -9,6 +9,13 @@ BackEnd- PostGres, Node, Express
 
 Test: Jest, Cypress
 
+## Screenshots
+
+!["Scheduler-homepage"](https://github.com/Raghav0811/scheduler/blob/master/docs/Scheduler-homepage.png.png?raw=true)
+!["Scheduler-create"](https://github.com/Raghav0811/scheduler/blob/master/docs/Scheduler-create.png?raw=true)
+!["Schdeuler-confirmed"](https://github.com/Raghav0811/scheduler/blob/master/docs/Scheduler-confirmed.png?raw=true)
+!["Scheduler-cancel_delete](https://github.com/Raghav0811/scheduler/blob/master/docs/Scheduler-delete/Scheduler-cancel_delete.png?raw=true)
+
 ## Dependencies
 
 -Node 10.x and above
